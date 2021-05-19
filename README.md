@@ -23,7 +23,7 @@
 #### Android
 
 1. 安装 Termux
-2. 输入 `curl https://cdn.jsdelivr.net/gh/fhyuncai/Arknights-Anti-addiction/install_termux.sh | bash` 根据提示安装和使用
+2. 输入 `curl https://raw.githubusercontents.com/fhyuncai/Arknights-Anti-addiction/main/install_termux.sh | bash` 根据提示安装和使用
 
 #### Windows
 

@@ -96,15 +96,13 @@ sed -i 's@^\(deb-src http.*\)$@#\1\ndeb-src http://mirrors.aliyun.com/debian bus
 echo "开始下载文件并添加至 Debian"
 mkdir debian-fs/root/Arknights
 cd debian-fs/root/Arknights
-wget -i https://cdn.jsdelivr.net/gh/fhyuncai/Arknights-Anti-addiction/install_linux_dl.txt
+wget -i https://raw.githubusercontents.com/fhyuncai/Arknights-Anti-addiction/main/install_linux_dl.txt
 chmod +x install.sh
 cd ../../..
 echo "文件已下载完成, 需要手动执行剩余命令:"
 echo "================================"
 echo "./${bin}"
-echo "apt-get update"
-echo "cd Arknights"
-echo "./install.sh"
+echo "apt-get update && ./Arknights/install.sh"
 echo "apt"
 echo "================================"
 echo "以上命令只需执行一次, 执行完成后方可正常使用, 立即启动请输入 ./start.sh , 以后每次进入 Termux 后执行以下命令使用:"
