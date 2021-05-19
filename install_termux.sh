@@ -1,8 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 echo "开始安装 Debian"
-echo "按下任意按键开始安装"
-read -s -n 1 -t 1 answer
 pkg install wget openssl-tool proot -y && hash -r
 
 # https://github.com/EXALAB/Anlinux-Resources/blob/master/Scripts/Installer/Debian/debian.sh
