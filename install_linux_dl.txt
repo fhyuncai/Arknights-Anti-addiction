@@ -1,0 +1,4 @@
+https://cdn.jsdelivr.net/gh/fhyuncai/Arknights-Anti-addiction/fcm.py
+https://cdn.jsdelivr.net/gh/fhyuncai/Arknights-Anti-addiction/install.sh
+https://cdn.jsdelivr.net/gh/fhyuncai/Arknights-Anti-addiction/start.sh
+https://raw.githubusercontents.com/fhyuncai/Arknights-Anti-addiction/master/mitmdump
