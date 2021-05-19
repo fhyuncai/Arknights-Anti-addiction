@@ -102,7 +102,7 @@ cd ../../..
 echo "文件已下载完成, 需要手动执行剩余命令:"
 echo "================================"
 echo "./${bin}"
-echo "apt-get update && ./Arknights/install.sh"
+echo "apt-get update && cd Arknights && ./install.sh"
 echo "apt"
 echo "================================"
 echo "以上命令只需执行一次, 执行完成后方可正常使用, 立即启动请输入 ./start.sh , 以后每次进入 Termux 后执行以下命令使用:"
