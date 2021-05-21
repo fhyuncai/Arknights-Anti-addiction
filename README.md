@@ -27,7 +27,7 @@
 
 #### Windows
 
-1. [点击这里](./archive/refs/heads/master.zip) 下载压缩包
+1. [点击这里](https://github.com/fhyuncai/Arknights-Anti-addiction/archive/refs/heads/main.zip) 下载压缩包
 2. 将压缩包解压
 3. 双击 start.bat 启动服务
 
