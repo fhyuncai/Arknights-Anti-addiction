@@ -1,13 +1,21 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-echo "开始安装 Debian"
+echo "开始安装子系统 Debian"
+
+echo "替换安装源为清华"
+sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list
+sed -i 's@^\(deb.*games stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list
+sed -i 's@^\(deb.*science stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list
+pkg update
+
+echo "安装依赖"
 pkg install wget openssl-tool proot -y && hash -r
 
 # https://github.com/EXALAB/Anlinux-Resources/blob/master/Scripts/Installer/Debian/debian.sh
 folder=debian-fs
 if [ -d "$folder" ]; then
     first=1
-    echo "skipping downloading"
+    echo "跳过下载"
 fi
 tarball="debian-rootfs.tar.xz"
 if [ "$first" != 1 ];then
@@ -88,12 +96,13 @@ echo "making $bin executable"
 chmod +x $bin
 echo "removing image for some space"
 rm $tarball
-#echo "You can now launch Debian with the ./${bin} script"
+echo "安装子系统 Debian 完成"
 
+echo "配置子系统 Debian"
 sed -i 's@^\(deb http.*\)$@#\1\ndeb http://mirrors.aliyun.com/debian buster main contrib non-free@' debian-fs/etc/apt/sources.list
 sed -i 's@^\(deb-src http.*\)$@#\1\ndeb-src http://mirrors.aliyun.com/debian buster main contrib non-free@' debian-fs/etc/apt/sources.list
 
-echo "开始下载文件并添加至 Debian"
+echo "开始下载项目文件并移至子系统 Debian"
 mkdir debian-fs/root/Arknights
 cd debian-fs/root/Arknights
 wget -i https://raw.githubusercontents.com/fhyuncai/Arknights-Anti-addiction/main/install_linux_dl.txt
