@@ -64,8 +64,31 @@
 
 ##### Android 7+ 额外步骤
 
-~~摸了~~
+由于 Android 7+ 策略修改，APP 默认不信任用户证书，只信任系统证书，所以需要把 Mitmproxy 证书安装到系统里才能使用
 
-#### iOS
+证书文件位置在 /system/etc/security/cacerts 里，必须为 PEM 格式，且文件命名必须符合系统证书规范
 
-~~我没有所以不写了~~
+Windows 的 Mitmproxy 证书位置在 C:\Users\用户名\.mitmproxy 文件夹内，Linux 在 ~/.mitmproxy (需要运行一次 Mitmproxy 才会生成)
+
+`openssl x509 -inform PEM -subject_hash_old -in mitmproxy-ca-cert.pem -noout # 获取证书 Hash`
+
+返回值为 c8750f0d
+
+使用 adb 操作
+
+```shell
+adb root # 重启 adb 并作为root启动
+adb shell "mount -o rw,remount /system" # 重新挂载系统目录为可写
+adb push C:\Users\用户名\.mitmproxy\c8750f0d.0 /system/etc/security/cacerts # 将证书推送至系统证书目录（注意修改用户名路径）
+adb shell "chmod 644 /system/etc/security/cacerts/c8750f0d.0" # 修改证书权限
+```
+
+#### iOS (感谢 [Shelton786](https://github.com/Shelton786) 提供教程)
+
+1. 进入 无线局域网详细信息
+
+2. HTTP代理 - 配置代理，将服务器和端口设置为服务器端口和 IP ，保存
+
+3. 进入网站 http://mitm.it 下载证书（iOS为描述文件）并安装
+
+4. 设置 - 通用 - 关于本机 - 证书信任设置 - mitmproxy - 打开
