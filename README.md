@@ -79,7 +79,8 @@ Windows 的 Mitmproxy 证书位置在 C:\Users\用户名\.mitmproxy 文件夹�
 ```shell
 adb root # 重启 adb 并作为root启动
 adb shell "mount -o rw,remount /system" # 重新挂载系统目录为可写
-adb push C:\Users\用户名\.mitmproxy\c8750f0d.0 /system/etc/security/cacerts # 将证书推送至系统证书目录（注意修改用户名路径）
+adb push C:\Users\用户名\.mitmproxy\mitmproxy-ca-cert.pem /system/etc/security/cacerts # 将证书推送至系统证书目录（注意修改用户名路径）
+adb shell "mv /system/etc/security/cacerts/mitmproxy-ca-cert.pem /system/etc/security/cacerts/c8750f0d.0" # 修改证书名称
 adb shell "chmod 644 /system/etc/security/cacerts/c8750f0d.0" # 修改证书权限
 ```
 
