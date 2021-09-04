@@ -3,10 +3,13 @@
 echo "开始安装子系统 Debian"
 
 echo "替换安装源为清华"
-sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list
-sed -i 's@^\(deb.*games stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list
-sed -i 's@^\(deb.*science stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list
-pkg update
+cp $PREFIX/etc/apt/sources.list $PREFIX/etc/apt/sources.list.bak
+cp $PREFIX/etc/apt/sources.list $PREFIX/etc/apt/sources.list.d/game.list.bak
+cp $PREFIX/etc/apt/sources.list $PREFIX/etc/apt/sources.list.d/science.list.bak
+echo "deb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main" > $PREFIX/etc/apt/sources.list
+echo "deb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games main" > $PREFIX/etc/apt/sources.list.d/game.list
+echo "deb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science main" > $PREFIX/etc/apt/sources.list.d/science.list
+pkg update -y
 
 echo "安装依赖"
 pkg install wget openssl-tool proot -y && hash -r
